@@ -1,28 +1,22 @@
 ---
-title: API Reference
+title: JSON API Reference
 description: Light Services bot API reference.
 ---
 
-# JSON API Documentation
+import { LinkCard } from "@astrojs/starlight/components";
 
-### Version 2.2.0 brings an upgrade to the LS Bot’s JSON API and allows generalisation of use.
+Since 2.2.0 the bot includes an expanded version of the JSON REST API. It now allows for generalization of use and third-party implementations.
 
-### With it we are bringing to you documentation that you might find helpful if you’re attempting to make use of the API in a 3rd party application.
+If you’re just starting, authenticating is a great place to start. Every API endpoint (with an exception to the [payment webhook (IPN)](/guides/webhooks) route) require authentication.
 
-If you’re just starting, authenticating is a great place to start. Every API endpoint (with an exception to IPN routes) require authentication.
+Guide to authenticating your requests:
 
-[Authenticating](JSON%20API%20Documentation%205ff2dca9000043cfa77fbb2105a44e30/Authenticating%2018e34ffc58114de1afcc6a29e99fd21f.md)
+<LinkCard title="Authenticating" description="Learn how to authenticate your requests." href="/api/authenticating" />
 
-A guide to handling paginated endpoints:
+Guide to handling paginated endpoints:
 
-[Paginating](JSON%20API%20Documentation%205ff2dca9000043cfa77fbb2105a44e30/Paginating%2034025c9ebfba41f6ba32b8167e072971.md)
+<LinkCard title="Paginating" description="Learn how the API returns paginated data." href="/api/paginating" />
 
-Routes:
+### Routes:
 
-[Route: /tickets](JSON%20API%20Documentation%205ff2dca9000043cfa77fbb2105a44e30/Route%20tickets%2029f7981559ad4c62afbe3f49bd258912.md)
-
-[Route: /transcripts](JSON%20API%20Documentation%205ff2dca9000043cfa77fbb2105a44e30/Route%20transcripts%208bf847a91a8245fb8f8fed4ac0ffe2ca.md)
-
-Endpoints in the IPN route for handling payment gateway events:
-
-[Route: /ipn](JSON%20API%20Documentation%205ff2dca9000043cfa77fbb2105a44e30/Route%20ipn%20adf5e43eb6a144d6a1190607b408d790.md)
+<LinkCard title="📁 Browse Routes" href="/api/routes-index" />

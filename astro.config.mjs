@@ -1,25 +1,68 @@
-import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
+import { defineConfig } from "astro/config";
+import starlight from "@astrojs/starlight";
 
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'My Docs',
+			title: "Light Services Bot",
 			social: {
-				github: 'https://github.com/withastro/starlight',
+				discord: "https://discord.gg/NszFDcW3",
 			},
+			favicon: "/favicon.png",
+			customCss: ["./src/styles/custom.css"],
 			sidebar: [
 				{
-					label: 'Guides',
+					label: "Guides",
 					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', link: '/guides/example/' },
+						{
+							label: "Getting Started",
+							link: "/guides/getting-started",
+						},
+						{
+							label: "Installation",
+							link: "/guides/installation",
+						},
+						{
+							label: "Configure PayPal",
+							link: "/guides/paypal",
+						},
+						{
+							label: "Webhook configuration",
+							link: "/guides/webhooks",
+						},
 					],
 				},
 				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: "API Reference",
+					items: [
+						{
+							label: "Introduction",
+							link: "/api/introduction",
+						},
+						{
+							label: "Authenticating",
+							link: "/api/authenticating",
+						},
+						{
+							label: "Pagination",
+							link: "/api/paginating",
+						},
+						{
+							label: "Routes",
+							link: "/api/routes-index",
+						},
+					],
+				},
+				{
+					label: "Other",
+					items: [
+						{
+							label: "Changelog",
+							link: "https://www.notion.so/nortexdev/Changelogs-a413a1845d924a59a631adfb7fb5bb2e?pvs=4",
+							badge: "🡥 notion.so",
+						},
+					],
 				},
 			],
 		}),

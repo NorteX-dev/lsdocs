@@ -2,9 +2,11 @@
 title: Getting Started
 ---
 
+import { LinkCard } from "@astrojs/starlight/components";
+
 ### Welcome
 
-This website contains a set of guides and references to ease the installation of the Light Services bot.
+This website contains a set of guides and references to help ease with the installation of the Light Services bot.
 
 Light Services bot is a Discord bot made originally for the Light Services development team, hence it's name.
 It contains features such as advanced ticket management, hands-off revenue management, automatic PayPal and crypto invoices and much more.
@@ -17,14 +19,19 @@ That includes terminology (like "bot", "token", "server" etc.) and basic knowled
 
 ### Obtain the LS bot
 
-If you do not own the bot yet, you can obtain a copy (along with its full & unencrypted source code) over at BuiltByBit:
-[View on BuiltByBit](https://builtbybit.com/resources/ticket-bot-paypal-invoices.22995/) for just $4.39.
+If you do not own the bot yet, you can obtain a copy (along with its full & unencrypted source code) over at **BuiltByBit** for just $4.39.
+
+<LinkCard
+	title="BuiltByBit"
+	description="View & purchase the bot on BuiltByBot."
+	href="https://builtbybit.com/resources/ticket-bot-paypal-invoices.22995/"
+/>
 
 ### Panel support
 
 We're aware of many people trying to host this bot on managed panels,
 such as [Pterodactyl Panel](https://pterodactyl.io/).
-The LS bot _partially_ supports this type of hosting, as you might run into problems during automatic payment updates ([IPN updates](/guides/ipn)) setup, due to not being able to open API ports. Read more [here](/guides/ipn).
+The LS bot _partially_ supports this type of hosting, as you might run into problems during automatic payment updates ([IPN updates](/guides/webhooks)) setup, due to not being able to open API ports. Read more [here](/guides/ipn).
 
 ### Support
 
