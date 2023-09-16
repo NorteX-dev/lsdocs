@@ -3,7 +3,7 @@ title: Authenticating
 description: Light Services bot API reference.
 ---
 
-import { LinkCard } from "@astrojs/starlight/components";
+import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 In order to use any of the endpoints, you need to authorize the request. You can do that using the `X-Api-Key` header.
 
@@ -17,6 +17,20 @@ headers: {
 	"X-Api-Key": "YOUR KEY HERE"
 }
 ```
+
+<Tabs>
+	<TabItem label="curl">
+		<code>curl https://your.domain/endpoint -H 'X-Api-Key: YOUR-KEY-HERE'</code>
+	</TabItem>
+	<TabItem label="axios"><code>
+		const axios = require("axios");
+		axios({
+			url: "https://your.domain/endpoint",
+			method: "GET",
+			headers: { "X-Api-Key": "YOUR-KEY-HERE" }
+		})
+	</code></TabItem>
+</Tabs>
 
 After authenticating, the API will allow you to make actions.
 
