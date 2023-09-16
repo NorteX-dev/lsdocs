@@ -1,0 +1,59 @@
+---
+title: Installation
+description: This guide outlines the steps required to successfully host the Light Services bot.
+---
+
+## Prerequisites
+
+1. We recommend running the bot on Ubuntu 22.04, however the steps also apply for Windows, macOS and other Linux distros.
+2. Installed **Node v18** or newer.
+
+## Steps
+
+1.  Use **Node v18 (LTS)** or newer. The bot does not support older versions.
+2.  Insert your Discord token into the `token` field inside the `config.yml` file. You can obtain a token by going to the Discord Developer Portal, creating a new app, opening the “Bot” tab and resetting and copying the token.
+
+    [Obtain a token - Discord Developer Portal 🡥](https://discord.com/developers/applications)
+
+3.  While you are there, you should also enable **all 3** privileged intents that are listed below the token. These are required to run the bot.
+4.  Fill the `dbUrl` (database url) field in the config file. This bot **requires** an SQL database, either: MySQL, PostgreSQL or SQLite.
+    <br/>If you have a database, use the following syntax:
+
+    ```yaml
+    dbUrl: "protocol://user:password@host:port/database_name"
+    # protocol - either "mysql", "postgres" or other Sequelize-supported RDBMS
+    # user - your database's username
+    # password - the password for this user
+    # host - target server's IP or domain
+    # port - port on which the RDBMS is running on
+    # database_name - the database name to use
+    # THE DATABASE HAS TO BE CREATED MANUALLY BEFOREHAND!
+    ```
+
+    If you do not have a database or don’t know what to put into here, use SQLite:
+
+    ```yaml
+    dbUrl: "sqlite://database.sqlite"
+    ```
+
+    :::caution
+    Creating a MySQL, PostgreSQL or any other database is beyond the scope of this document. Please refer to other sources.
+    :::
+
+    :::note
+    **You do not have to create any tables.** The only thing you need to create manually is the database.
+    :::
+
+5.  Fill other values in the configuration file according to your preference.
+
+    Most settings are self-explainatory from the key name, but some have additional comments.
+
+6.  Run `npm install` to install the required dependencies.
+7.  (<ins>Option 1</ins>; normal) Run `npm run dist` to run the pre-built JS dist files.
+8.  (<ins>Option 2</ins>; if you modified the `src` folder) Run `npm run clean && npm run build && npm run dist` in the terminal to **re-build** and run. This command will:
+    -   clean - Remove the `dist` folder so any old version doesn’t interfere.
+    -   build - Runs `tsc` which compiles TypeScript and creates the `dist` directory.
+    -   dist - Starts the freshly-built `dist/index.js` file using `node`.
+9.  (<ins>Option 3</ins>; hot-reloading) If you're planning on developing the bot, use `npm run dev` to run the bot with `nodemon`. This will watch the files for changes and will auto-restart the bot when files are changed.
+10. Invite the bot **using the bot & application.commands scopes**.
+11. If you wish to use invoicing, you should configure PayPal: [PayPal Integration](/guides/paypal)

@@ -1,0 +1,35 @@
+---
+title: Setting up PayPal invoicing
+description: Set up PayPal invoicing.
+---
+
+### Prerequisites
+
+**PayPal invoicing requires a Business account.** You can check whether you have one [here](https://developer.paypal.com/dashboard/accountStatus).
+
+If you do not have a PayPal business account, you can upgrade or create a new one. The application process is different from country to country, so please consult your local PayPal terms.
+
+### Sandbox & Live distinction
+
+PayPal offers a mode that they call _Sandbox_. Sandbox mode is a testing environment with "fake" accounts and money.
+
+If you're not planning on developing the bot further, you should probably use _Live_ mode instead.
+
+You can control whether sandbox mode is enabled using the `gateways.paypal.useSandbox` option in your `config.yml` file.
+
+### Set up
+
+To configure PayPal invoicing:
+
+1. Enable it in your `config.yml` by setting `gateways.paypal.enabled` to `true` and set `gateways.paypal.useSandbox` to `false` (refer to [Sandbox & Live distinction](#sandbox--live-distinction)).
+   ![PayPal config 1](/paypal/enable-config.png)
+2. Go to the [PayPal Developer Dashboard 🡥](https://developer.paypal.com/developer/applications/).
+3. Switch the mode over to **Live** and click on **Apps & Credentials**.
+   ![PayPal live](/paypal/live-mode.png)
+4. Create a new PayPal app by clicking "Create App". Name it whatever you want.
+5. Copy the generated client ID & client secret.
+6. Paste these values into your `config.yml` file.
+   ![PayPal config 2](/paypal/keys-config.png)
+
+**After configuring these credentials, invoices should be enabled, however, invoice status won't update.**
+You can configure [webhooks updates](/guides/webhooks) to achieve automatic invoice updates, but you don't have to! The bot will work fine and invoices can be updated manually using the command `/invoice refresh`.

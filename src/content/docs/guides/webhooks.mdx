@@ -1,0 +1,63 @@
+---
+title: Payment notification webhooks
+description: Advanced setup for automatic payment updates from PayPal and Coinbase.
+---
+
+Payment notification webhooks allow for automatic invoice payment updates from PayPal and Coinbase Commerce.
+
+### Prerequisites
+
+**This guide is intended for advanced users only.**
+
+You will require:
+
+-   a server with full root access;
+-   be able to open ports on your server in order to allow external communication with the bots internal API;
+-   a valid SSL certificate (or a service that provides you one, like Cloudflare).
+
+:::caution
+If you can't expose the webhook (for any of the reasons outlined above), you will still be able to create & manage invoices, however their status won't update automatically.
+
+You can update their status manually using `/invoice refresh` every once in a while.
+
+**If this solution is fine with you, you can skip this guide.**
+:::
+
+**This guide assumes the [basic installation](/guides/installation) & [payment](/guides/paypal) guides have been followed.**
+
+### Terminology
+
+Both PayPal and Coinbase Commerce send events (like updates to payments) to your bot's API via webhooks.
+
+This means that the platform will send a POST request to your bot's URL, which will then update the invoice's status.
+
+[Read more about webhook-driven event updates 🡥](https://developer.paypal.com/api/rest/webhooks/)
+
+The bot's API must thus be enabled & open to the public and accessible from the internet. It must also run on HTTPS (SSL), as per PayPal's and Coinbase's requirements.
+
+You can achieve this in multiple ways, for example by proxying the website through [Cloudflare](https://www.cloudflare.com/) or providing your own key & certificate files.
+
+### Port Reference
+
+By default, the bot exposes the API endpoint on port `2020` for HTTP and `2021` for HTTPS (using key.pem and cert.pem files).
+Ports can be configured in your `config.yml` file, under the `api` section.
+
+We recommend setting up a reverse proxy using [NGINX](https://www.nginx.com/) or [Apache](https://httpd.apache.org/) to proxy the bot's API to a subdomain.
+
+> Before configuring PayPal or Coinbase webhooks make sure the API works by visiting the root endpoint in your browser.
+
+### Set up
+
+:::tip[Endpoints]
+The endpoint for _PayPal_ invoice updates is available at `/ipn/paypal`.
+
+The endpoint for _Coinbase Commerce_ payment updates is available at `/ipn/coinbase`.
+:::
+
+1.  Go to the [PayPal Developer Dashboard](https://developer.paypal.com/dashboard/applications/live), switch the mode over to **Live** and click on **Apps & Credentials**.
+2.  Select your app from the list.
+3.  Create a webhook on PayPal and Coinbase Commerce with the URL of your bot's API, followed by the endpoint, as shown:
+    <img alt="PayPal webhook example 1" src="/webhooks/add-webhook-hover.png" width="400"/>
+    <img alt="PayPal webhook example 2" src="/webhooks/paypal-modal-add.png" width="400"/>
+    When asked which events to track, select "**All Events**".
+    <img alt="PayPal webhook example 3" src="/webhooks/paypal-webhook.png"/>

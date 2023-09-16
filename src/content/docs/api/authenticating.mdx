@@ -1,0 +1,33 @@
+---
+title: Authenticating
+description: Light Services bot API reference.
+---
+
+In order to use any of the endpoints, you need to authorize the request. You can do that using the `X-Api-Key` header.
+
+First, configure your keys. In your configuration, scroll to `api.keys` and type in your keys, like so:
+
+[//]: # "![api.keys key in config.yml]()"
+
+api.keys key in config.yml
+
+A key can be anything, but it should be long and secure. You can generate a secure key using a tool like [this [UUID v4 Generator]](https://www.uuidgenerator.net/version4).
+
+Then, when sending a request, include any of the above-defined keys it in the request `headers`:
+
+```http
+GET https://your.domain/endpoint
+headers: {
+	"X-Api-Key": "YOUR KEY HERE"
+}
+```
+
+After authenticating, the API will allow you to make actions.
+
+:::danger
+**Never** share your API key(s). They allow full, unmoderated control over your bot, and therefore, your Discord server as well. Use with care.
+:::
+
+Read the next article about how pagination works for large-data-returning endpoints.
+
+[Paginating](/api/paginating)
