@@ -58,26 +58,26 @@ The endpoint for _Stripe_ payment updates is available at `/ipn/stripe`.
 1.  Go to the [PayPal Developer Dashboard](https://developer.paypal.com/dashboard/applications/live), switch the mode over to **Live** and click on **Apps & Credentials**.
 2.  Select your app from the list.
 3.  Create a webhook with the URL of your bot's API, followed by the endpoint, as shown:
-	<img alt="PayPal webhook example 1" src="/webhooks/add-webhook-hover.png" width="400"/>
-	<img alt="PayPal webhook example 2" src="/webhooks/paypal-modal-add.png" width="400"/>
-	When asked which events to track, select "**All Events**".
-	<img alt="PayPal webhook example 3" src="/webhooks/paypal-webhook.png"/>
+<img alt="PayPal webhook example 1" src="/webhooks/add-webhook-hover.png" width="400"/>
+<img alt="PayPal webhook example 2" src="/webhooks/paypal-modal-add.png" width="400"/>
+When asked which events to track, select "**All Events**".
+<img alt="PayPal webhook example 3" src="/webhooks/paypal-webhook.png"/>
 
 #### Configuration on Coinbase Commerce:
 1. Login to [Coinbase Commerce](https://beta.commerce.coinbase.com).
 2. Navigate to Settings by clicking on your profile picture.
 3. Navigate the tab to "Notifications"
 4. Create a webhook with the URL of your bot's API, followed by the endpoint, as shown:
-	<img alt="Coinbase webhook example 1" src="/webhooks/cb-add-webhook.png" width="400"/>
-	<img alt="Coinbase webhook example 2" src="/webhooks/cb-modal.png" width="400"/>
+<img alt="Coinbase webhook example 1" src="/webhooks/cb-add-webhook.png" width="400"/>
+<img alt="Coinbase webhook example 2" src="/webhooks/cb-modal.png" width="400"/>
 
 #### Configuration on Stripe:
 1. Go to the [Stripe Dashboard](https://dashboard.stripe.com) and make sure the **Test mode** switch is **Off**.
 2. Navigate to the [webhooks tab](https://dashboard.stripe.com/webhooks).
 3. Click "Add an endpoint".
 4. Insert the URL of your bot's API, followed by the endpoint, as shown:
-	<img alt="Stripe webhook example 1" src="/webhooks/stripe-add-webhook.png" width="400"/>
-	When asked which events to listen to, find and select "invoice.paid".
-	<img alt="Stripe webhook example 2" src="/webhooks/stripe-set-events.png" width="400"/>
-	Copy the webhook signing secret and insert it into your config.yml:
-	<img alt="Stripe webhook example 3" src="/webhooks/stripe-sigsecret.png" width="400"/>
+<img alt="Stripe webhook example 1" src="/webhooks/stripe-add-webhook.png" width="400"/>
+When asked which events to listen to, find and select "invoice.paid".
+<img alt="Stripe webhook example 2" src="/webhooks/stripe-set-events.png" width="400"/>
+Copy the webhook signing secret and insert it into your config.yml:
+<img alt="Stripe webhook example 3" src="/webhooks/stripe-sigsecret.png" width="400"/>
