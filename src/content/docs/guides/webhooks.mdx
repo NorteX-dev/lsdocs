@@ -1,9 +1,9 @@
 ---
 title: Payment notification webhooks
-description: Advanced setup for automatic payment updates from PayPal and Coinbase.
+description: Advanced setup for automatic payment updates from PayPal, Coinbase and Stripe.
 ---
 
-Payment notification webhooks allow for automatic invoice payment updates from PayPal and Coinbase Commerce.
+Payment notification webhooks allow for automatic invoice payment updates from PayPal, Coinbase Commerce and Stripe.
 
 ### Prerequisites
 
@@ -12,7 +12,7 @@ Payment notification webhooks allow for automatic invoice payment updates from P
 You will require:
 
 -   a server with full root access;
--   be able to open ports on your server in order to allow external communication with the bots internal API;
+-   be able to open ports on your server in order to allow external communication with the bots internal Rest API;
 -   a valid SSL certificate (or a service that provides you one, like Cloudflare).
 
 :::caution
@@ -33,7 +33,7 @@ This means that the platform will send a POST request to your bot's URL, which w
 
 [Read more about webhook-driven event updates 🡥](https://developer.paypal.com/api/rest/webhooks/)
 
-The bot's API must thus be enabled & open to the public and accessible from the internet. It must also run on HTTPS (SSL), as per PayPal's and Coinbase's requirements.
+The bot's API must thus be enabled & open to the public and accessible from the internet. It must also run on HTTPS (SSL), as per PayPal's, Stripe's and Coinbase's requirements.
 
 You can achieve this in multiple ways, for example by proxying the website through [Cloudflare](https://www.cloudflare.com/) or providing your own key & certificate files.
 
@@ -44,20 +44,40 @@ Ports can be configured in your `config.yml` file, under the `api` section.
 
 We recommend setting up a reverse proxy using [NGINX](https://www.nginx.com/) or [Apache](https://httpd.apache.org/) to proxy the bot's API to a subdomain.
 
-> Before configuring PayPal or Coinbase webhooks make sure the API works by visiting the root endpoint in your browser.
+> Before configuring PayPal, Coinbase or Stripe webhooks make sure the API works by visiting the root endpoint (/) in your browser.
 
 ### Set up
 
 :::tip[Endpoints]
 The endpoint for _PayPal_ invoice updates is available at `/ipn/paypal`.
-
 The endpoint for _Coinbase Commerce_ payment updates is available at `/ipn/coinbase`.
+The endpoint for _Stripe_ payment updates is available at `/ipn/stripe`.
 :::
 
+#### Configuration on PayPal:
 1.  Go to the [PayPal Developer Dashboard](https://developer.paypal.com/dashboard/applications/live), switch the mode over to **Live** and click on **Apps & Credentials**.
 2.  Select your app from the list.
-3.  Create a webhook on PayPal and Coinbase Commerce with the URL of your bot's API, followed by the endpoint, as shown:
-    <img alt="PayPal webhook example 1" src="/webhooks/add-webhook-hover.png" width="400"/>
-    <img alt="PayPal webhook example 2" src="/webhooks/paypal-modal-add.png" width="400"/>
-    When asked which events to track, select "**All Events**".
-    <img alt="PayPal webhook example 3" src="/webhooks/paypal-webhook.png"/>
+3.  Create a webhook with the URL of your bot's API, followed by the endpoint, as shown:
+	<img alt="PayPal webhook example 1" src="/webhooks/add-webhook-hover.png" width="400"/>
+	<img alt="PayPal webhook example 2" src="/webhooks/paypal-modal-add.png" width="400"/>
+	When asked which events to track, select "**All Events**".
+	<img alt="PayPal webhook example 3" src="/webhooks/paypal-webhook.png"/>
+
+#### Configuration on Coinbase Commerce:
+1. Login to [Coinbase Commerce](https://beta.commerce.coinbase.com).
+2. Navigate to Settings by clicking on your profile picture.
+3. Navigate the tab to "Notifications"
+4. Create a webhook with the URL of your bot's API, followed by the endpoint, as shown:
+	<img alt="Coinbase webhook example 1" src="/webhooks/cb-add-webhook.png" width="400"/>
+	<img alt="Coinbase webhook example 2" src="/webhooks/cb-modal.png" width="400"/>
+
+#### Configuration on Stripe:
+1. Go to the [Stripe Dashboard](https://dashboard.stripe.com) and make sure the **Test mode** switch is **Off**.
+2. Navigate to the [webhooks tab](https://dashboard.stripe.com/webhooks).
+3. Click "Add an endpoint".
+4. Insert the URL of your bot's API, followed by the endpoint, as shown:
+	<img alt="Stripe webhook example 1" src="/webhooks/stripe-add-webhook.png" width="400"/>
+	When asked which events to listen to, find and select "invoice.paid".
+	<img alt="Stripe webhook example 2" src="/webhooks/stripe-set-events.png" width="400"/>
+	Copy the webhook signing secret and insert it into your config.yml:
+	<img alt="Stripe webhook example 3" src="/webhooks/stripe-sigsecret.png" width="400"/>
