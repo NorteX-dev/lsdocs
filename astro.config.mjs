@@ -1,6 +1,8 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 
+import tailwind from "@astrojs/tailwind";
+
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
@@ -13,7 +15,7 @@ export default defineConfig({
 			customCss: ["./src/styles/custom.css"],
 			sidebar: [
 				{
-					label: "Guides",
+					label: "Get Started",
 					items: [
 						{
 							label: "Getting Started",
@@ -24,12 +26,17 @@ export default defineConfig({
 							link: "/guides/installation",
 						},
 						{
-							label: "Configure PayPal",
-							link: "/guides/paypal",
-						},
-						{
 							label: "Webhook configuration",
 							link: "/guides/webhooks",
+						},
+					],
+				},
+				{
+					label: "Invoicing",
+					items: [
+						{
+							label: "PayPal configuration",
+							link: "/guides/paypal",
 						},
 					],
 				},
@@ -49,8 +56,20 @@ export default defineConfig({
 							link: "/api/paginating",
 						},
 						{
-							label: "Routes",
-							link: "/api/routes-index",
+							label: "Route: /tickets",
+							link: "/api/routes/tickets",
+						},
+						{
+							label: "Route: /transcripts",
+							link: "/api/routes/transcripts",
+						},
+						{
+							label: "Route: /bank",
+							link: "/api/routes/bank",
+						},
+						{
+							label: "Route: /ipn",
+							link: "/api/routes/ipn",
 						},
 					],
 				},
@@ -66,5 +85,6 @@ export default defineConfig({
 				},
 			],
 		}),
+		tailwind(),
 	],
 });

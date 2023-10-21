@@ -1,0 +1,114 @@
+---
+enum Mode {
+	"GET",
+	"POST",
+	"PUT",
+	"DELETE",
+	"PATCH",
+	"HEAD",
+}
+
+const bgColorsMap = {
+	GET: "#2662a2",
+	POST: "#208757",
+	PUT: "#9d6521",
+	DELETE: "#a02929",
+	PATCH: "#1c9276",
+	HEAD: "#64249d",
+};
+
+const frontEndColorsMap = {
+	GET: "#4889ca",
+	POST: "#3db57e",
+	PUT: "#c87f24",
+	DELETE: "#ce2e2e",
+	PATCH: "#3bc8a7",
+	HEAD: "#7b39b9",
+};
+
+interface Props {
+	title: string;
+	mode: Mode;
+	description: string;
+	queryParams: { name: string; type: string }[];
+	body: { name: string; type: string }[];
+	requiresAuth: boolean;
+	paginated: boolean;
+	addedIn: string;
+}
+const { title, mode, description, queryParams, body, requiresAuth, paginated, addedIn } = Astro.props;
+---
+
+<div
+	class="rounded p-3 px-4 text-black hover:-translate-y-[2px] transition-transform"
+	style={`background-color: ${bgColorsMap[mode]}`}
+>
+	<div class="header-row flex gap-3 items-center text-bold">
+		<span
+			class="badge-text text-white font-bold w-20 text-center rounded"
+			style={`background-color: ${frontEndColorsMap[mode]}`}>{mode}</span
+		>
+		<span class="text-white font-bold">{title}</span>
+		<span class="text-gray-200 text-xs">{description}</span>
+
+	</div>
+	<div class="route-body" style="margin: 10px 0 0;">
+		<div class="flex gap-2">
+			{
+				requiresAuth && (
+					<a
+						class="badge-text text-white font-bold w-fit px-3 text-sm text-center bg-gray-600 rounded-full"
+						style="color: white; margin: 0 0 5px;"
+						href="/api/authenticating"
+					>
+						Requires Auth
+					</a>
+				)
+			}
+			{
+				paginated && (
+					<a
+						class="badge-text text-white font-bold w-fit px-3 text-sm text-center bg-gray-600 rounded-full"
+						style="color: white; margin: 0 0 5px;"
+						href="/api/paginating"
+					>
+						Paginated
+					</a>
+				)
+			}
+		</div>
+		<div class="flex gap-3 items-top" style="margin: 0;">
+			{
+				queryParams && queryParams.length && (
+					<div class="flex-1" style="margin:0;">
+						<div class="text-gray-200 text-sm font-bold">Query Parameters:</div>
+						<div class="bg-[#181818] p-2 font-mono rounded" style="margin: 5px 0 0;">
+							{queryParams?.map((param) => (
+								<div class="flex gap-2 items-center " style="margin:0;">
+									<span class="text-gray-200 text-xs">{param.name}:</span>
+									<span class="text-teal-200 text-xs">{param.type}</span>
+								</div>
+							))}
+						</div>
+					</div>
+				)
+			}
+			{
+				body && body.length && (
+					<div class="flex-1" style="margin:0;">
+						<div class="text-gray-200 text-sm font-bold">JSON Payload:</div>
+						<div class="bg-[#181818] p-2 font-mono rounded" style="margin: 5px 0 0;">
+							{body?.map((param) => (
+								<div class="flex gap-2 items-center" style="margin:0;">
+									<span class="text-gray-200 text-xs">{param.name}:</span>
+									<span class="text-teal-200 text-xs">{param.type}</span>
+								</div>
+							))}
+						</div>
+					</div>
+				)
+			}
+		</div>
+		<p class="text-gray-300 text-xs font-semibold text-right" style="margin: 10px 0 0;">Added in: {addedIn || "latest"}</p>
+	</div>
+</div>

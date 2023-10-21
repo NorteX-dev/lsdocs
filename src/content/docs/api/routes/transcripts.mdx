@@ -1,0 +1,26 @@
+---
+title: "Route: Transcripts"
+description: Light Services bot API reference.
+---
+
+import APIRoute from "../../../../components/api/APIRoute.astro";
+
+<APIRoute
+	title={"/transcripts/:ticketId"}
+	mode={"GET"}
+	description={"Gets transcript data (messages sent) for the ticket."}
+	requiresAuth={true}
+	paginated={true}
+	addedIn={"v2.2.0"}
+/>
+
+<APIRoute
+	title={"/transcripts/:ticketId/file"}
+	mode={"GET"}
+	description={
+		"Returns transcript data just like the endpoint above, but in a TXT file transmitted over with an octet-stream."
+	}
+	requiresAuth={true}
+	paginated={false}
+	addedIn={"v2.2.0"}
+/>

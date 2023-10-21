@@ -13,7 +13,7 @@
 	--sl-color-black: #181818;
 }
 /* Light mode colors. */
-:root[data-theme='light'] {
+:root[data-theme="light"] {
 	--sl-color-accent-low: #e8d3b9;
 	--sl-color-accent: #e59e14;
 	--sl-color-accent-high: #784c00;
@@ -26,4 +26,10 @@
 	--sl-color-gray-6: #eeeeee;
 	--sl-color-gray-7: #f6f6f6;
 	--sl-color-black: #ffffff;
+}
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
 }

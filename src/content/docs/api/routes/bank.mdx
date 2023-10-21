@@ -1,0 +1,128 @@
+---
+title: "Route: Bank"
+description: Light Services bot API reference.
+---
+
+import APIRoute from "../../../../components/api/APIRoute.astro";
+
+<APIRoute
+	title={"/bank/balance/:userId"}
+	mode={"GET"}
+	description={"Get current user balance."}
+	queryParams={[
+		{
+			name: "userId",
+			type: "ID of the user",
+		},
+	]}
+	requiresAuth={true}
+	paginated={false}
+	addedIn={"v2.6.0"}
+/>
+
+<APIRoute
+	title={"/bank/transactions/:userId"}
+	mode={"GET"}
+	description={"Get the transaction list of a current user."}
+	queryParams={[
+		{
+			name: "userId",
+			type: "ID of the user",
+		},
+	]}
+	requiresAuth={true}
+	paginated={false}
+	addedIn={"v2.6.0"}
+/>
+
+<APIRoute
+	title={"/bank/add"}
+	mode={"PUT"}
+	description={"Add balance to a user's bank."}
+	body={[
+		{
+			name: "userId",
+			type: "string; ID of the user",
+		},
+		{
+			name: "amount",
+			type: "number; Amount to add",
+		},
+		{
+			name: "note",
+			type: "string, optional; Note to add",
+			optional: true,
+		},
+		{
+			name: "noteHtml",
+			type: "string, optional; HTML version of the note (for use in web environments)",
+			optional: true,
+		},
+	]}
+	requiresAuth={true}
+	paginated={false}
+	addedIn={"v2.6.0"}
+/>
+
+<APIRoute
+	title={"/bank/subtract"}
+	mode={"PUT"}
+	description={"Subtract balance from a user's bank."}
+	body={[
+		{
+			name: "userId",
+			type: "string; ID of the user",
+		},
+		{
+			name: "amount",
+			type: "number; Amount to add",
+		},
+		{
+			name: "preventNegative",
+			type: "boolean, optional; Whether or not to disallow balance going negative",
+			optional: true,
+		},
+		{
+			name: "note",
+			type: "string, optional; Note to add",
+			optional: true,
+		},
+		{
+			name: "noteHtml",
+			type: "string, optional; HTML version of the note (for use in web environments)",
+			optional: true,
+		},
+	]}
+	requiresAuth={true}
+	paginated={false}
+	addedIn={"v2.6.0"}
+/>
+
+<APIRoute
+	title={"/bank/set"}
+	mode={"PUT"}
+	description={"Set a user's bank balance."}
+	body={[
+		{
+			name: "userId",
+			type: "string; ID of the user",
+		},
+		{
+			name: "amount",
+			type: "number; Amount to add",
+		},
+		{
+			name: "note",
+			type: "string, optional; Note to add",
+			optional: true,
+		},
+		{
+			name: "noteHtml",
+			type: "string, optional; HTML version of the note (for use in web environments)",
+			optional: true,
+		},
+	]}
+	requiresAuth={true}
+	paginated={false}
+	addedIn={"v2.6.0"}
+/>

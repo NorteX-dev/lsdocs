@@ -1,0 +1,39 @@
+---
+title: "Route: IPN Webhooks"
+description: Light Services bot API reference.
+---
+
+import APIRoute from "../../../../components/api/APIRoute.astro";
+
+:::danger
+IPN routes are not designed to be used manually. They are designed to handle webhooks sent in by payment gateways, like PayPal.
+
+They're documented only for consistency.
+:::
+
+<APIRoute
+	title={"/ipn/paypal"}
+	mode={"POST"}
+	description={"Handles PayPal webhook notifications."}
+	requiresAuth={false}
+	paginated={false}
+	addedIn={"v1.6.0"}
+/>
+
+<APIRoute
+	title={"/ipn/coinbase"}
+	mode={"POST"}
+	description={"Handles Coinbase Commerce webhook notifications."}
+	requiresAuth={false}
+	paginated={false}
+	addedIn={"v1.6.0"}
+/>
+
+<APIRoute
+	title={"/ipn/stripe"}
+	mode={"POST"}
+	description={"Handles Stripe webhook notifications."}
+	requiresAuth={false}
+	paginated={false}
+	addedIn={"v2.7.0"}
+/>

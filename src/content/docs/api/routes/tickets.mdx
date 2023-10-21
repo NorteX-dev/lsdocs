@@ -1,0 +1,33 @@
+---
+title: "Route: Tickets"
+description: Light Services bot API reference.
+---
+
+import APIRoute from "../../../../components/api/APIRoute.astro";
+
+<APIRoute
+	title={"/tickets"}
+	mode={"GET"}
+	description={"Get all tickets."}
+	requiresAuth={true}
+	paginated={true}
+	addedIn={"v2.2.0"}
+/>
+
+<APIRoute
+	title={"/tickets/count"}
+	mode={"GET"}
+	description={"Get a total count of all tickets."}
+	requiresAuth={true}
+	paginated={false}
+	addedIn={"v2.2.0"}
+/>
+
+<APIRoute
+	title={"/tickets/:id"}
+	mode={"GET"}
+	description={"Get information about a specific ticket."}
+	requiresAuth={true}
+	paginated={false}
+	addedIn={"v2.2.0"}
+/>
